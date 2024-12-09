@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  onGenerateClick() {}
+  constructor(private route: Router) {}
 
-  onHistoryClick() {}
+  goToGenerator() {
+    this.route.navigate(["/generator"])
+  }
+
+  goToHistory() {
+    this.route.navigate(["/history"])
+
+  }
 }

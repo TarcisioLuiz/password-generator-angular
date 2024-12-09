@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PasswordGeneratorComponent } from './password-generator/password-generator.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './presentation/header/header.component';
+
 
 @Component({
   selector: 'app-root',
