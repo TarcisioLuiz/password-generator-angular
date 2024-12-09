@@ -11,7 +11,7 @@ export class PasswordRepository {
   constructor(private http: HttpClient) {}
 
   public generatePassword(dto: PasswordDto): Observable<Password> {
-    return this.http.post<any>('http://localhost:8080/api/generate-password', dto)
+    return this.http.post<any>('api/generate-password', dto)
     .pipe(
       map((resource: PasswordResource) => new Password(resource)),
       catchError((error) => {
@@ -26,7 +26,7 @@ export class PasswordRepository {
   }
 
   public retrievePasswords(): Observable<Password[]> {
-    return this.http.get<PasswordResource[]>('http://localhost:8080/api/password-history').pipe(
+    return this.http.get<PasswordResource[]>('api/password-history').pipe(
       map((resources: PasswordResource[]) => resources.map((resource) => new Password(resource))),
       catchError((error) => {
         if (error.message) {
