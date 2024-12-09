@@ -31,6 +31,7 @@ export class PasswordGeneratorComponent implements OnInit {
       this.passwordRepository.generatePassword(this.passwordDto).subscribe(value => {
         this.password.set(value.password)
         this.generatorForm.reset
+        this.errorMessage = ''
       })
     } else {
       this.errorMessage = 'select at least one option'
