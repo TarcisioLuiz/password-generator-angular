@@ -15,6 +15,7 @@ import { PasswordDto } from '../../domain/dto/password.dto';
 export class PasswordGeneratorComponent implements OnInit {
   public password = signal('')
   private passwordDto: PasswordDto
+  public errorMessage = ''
 
   public generatorForm = inject(PasswordGeneratorForm)
   private passwordRepository = inject(PasswordRepository)
@@ -25,8 +26,26 @@ export class PasswordGeneratorComponent implements OnInit {
 
   generatePassword() {
     this.passwordDto = this.generatorForm.value
-    this.passwordRepository.generatePassword(this.passwordDto).subscribe(value => {
-      this.password.set(value.password)
-    })
+    this.validatePasswordLength(this.passwordDto)
+    if (this.allcheckBoxUnselected(this.passwordDto)) {
+      this.passwordRepository.generatePassword(this.passwordDto).subscribe(value => {
+        this.password.set(value.password)
+        this.generatorForm.reset
+      })
+    } else {
+      this.errorMessage = 'select at least one option'
+    }
+  }
+
+  allcheckBoxUnselected(dto: PasswordDto): boolean {
+    return dto.lowercase || dto.number || dto.specialChar || dto.uppercase
+  }
+
+  validatePasswordLength(dto: PasswordDto): void {
+    if (dto.passwordLength < 1) {
+      this.passwordDto.passwordLength = 1
+    } else if (dto.passwordLength > 50) {
+      this.passwordDto.passwordLength = 50
+    }
   }
 }

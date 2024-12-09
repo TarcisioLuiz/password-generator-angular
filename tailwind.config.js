@@ -11,6 +11,7 @@ module.exports = {
     colors: {
       'yellow-primary': '#ffdd00',
       'coral': '#ff6f61',
+      'red': '#ff0000',
       'purple': '#7e5bef',
       'pink': '#ff49db',
       'orange': '#ff7849',
