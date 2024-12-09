@@ -21,6 +21,6 @@ The backend of this application is available in the repository [Password Generat
 ## 🛠️ **Technologies Used**
 
 ### Frontend
-- **Angular**: Main framework for building the application.
+- **Angular 18**: Main framework for building the application.
 - **Tailwind**: Styling components.
 - **TypeScript**: Primary language for logic and project structure.
