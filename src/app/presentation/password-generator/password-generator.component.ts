@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordGeneratorForm } from './password-generator-form';
 import { PasswordRepository } from '../../repository/password.repository';
@@ -10,15 +10,18 @@ import { PasswordDto } from '../../domain/dto/password.dto';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './password-generator.component.html',
-  styleUrl: './password-generator.component.css',
-  providers: []
+  styleUrl: './password-generator.component.css'
 })
-export class PasswordGeneratorComponent {
+export class PasswordGeneratorComponent implements OnInit {
   public password = signal('')
   private passwordDto: PasswordDto
 
   public generatorForm = inject(PasswordGeneratorForm)
   private passwordRepository = inject(PasswordRepository)
+
+  ngOnInit(): void {
+    this.generatePassword()
+  }
 
   generatePassword() {
     this.passwordDto = this.generatorForm.value

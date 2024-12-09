@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Injectable({ providedIn: 'root' })
 export class PasswordGeneratorForm {
@@ -7,11 +7,11 @@ export class PasswordGeneratorForm {
 
   constructor(private formBuilder: FormBuilder) {
     this.generatorForm = this.formBuilder.group({
-      uppercase: [false],
-      lowercase: [false],
-      numbers: [false],
-      specialChar: [false],
-      passwordLength: [0],
+      uppercase: [true],
+      lowercase: [true],
+      numbers: [true],
+      specialChar: [true],
+      passwordLength: [20, [Validators.min(1), Validators.max(50)]],
   });
   }
 

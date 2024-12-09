@@ -24,4 +24,18 @@ export class PasswordRepository {
       })
     );
   }
+
+  public retrievePasswords(): Observable<Password[]> {
+    return this.http.get<PasswordResource[]>('http://localhost:8080/api/password-history').pipe(
+      map((resources: PasswordResource[]) => resources.map((resource) => new Password(resource))),
+      catchError((error) => {
+        if (error.message) {
+          alert(error.message)
+        } else {
+          alert('Ocorreu um erro. Tente novamente mais tarde.')
+        }
+        return of([] as Password[])
+      })
+    );
+  }
 }
